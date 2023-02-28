@@ -1,4 +1,4 @@
-package org.hordekodning.alltid.hordekodare.Time;
+/* package org.hordekodning.alltid.hordekodare.Time;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.annotation.SessionScope;
@@ -28,3 +28,4 @@ public class Time {
 }
 
 
+ */

@@ -1,4 +1,4 @@
-package org.hordekodning.alltid.hordekodare.link;
+/* package org.hordekodning.alltid.hordekodare.link;
 
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,4 +29,4 @@ public class LinkController {
         model.addAttribute("list", linkService.getLinkList());
         return "userpage";
     }
-}
+} */

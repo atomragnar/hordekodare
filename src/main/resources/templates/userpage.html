@@ -2,11 +2,11 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Links</title>
+    <title>..</title>
 </head>
 <body>
 
-<form action="/" method="post">
+<!-- <form action="/" method="post">
     <input type="text" name="name" placeholder="Link name"/>
     <input type="text" name="url" placeholder="Link URL"/>
     <input type="submit" value="Add link"/>
@@ -16,18 +16,18 @@
         <a th:href="${link.getUrl}" th:text="${link.getName}"></a>
     </li>
 </ul>
+ -->
 
-
-
+<!-- 
     <div>
         <span th:text="${time.getNow}" ></span>
         <br>
         <span th:text="${time.getLd}" ></span>
     </div>
-
+ -->
     <div>
     <h1>Todo List</h1>
-<form action="/" method="post">
+<form th:action="@{/userpage}" method="post">
     <input type="text" name="listItem">
     <input type="submit">
 </form>

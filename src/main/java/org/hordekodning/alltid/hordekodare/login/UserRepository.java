@@ -1,5 +1,6 @@
 package org.hordekodning.alltid.hordekodare.login;
 
+import org.springframework.boot.context.annotation.UserConfigurations;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;
 
@@ -32,6 +33,18 @@ public class UserRepository {
 
     public User getUser(int index) {
         return users.get(index);
+    }
+
+    
+    public User findUserByEmail(String email) {
+        return users.stream().filter(u -> u.getEmail().equals(email))
+        .findFirst()
+        .orElse(null);
+    }
+
+    public User isUsernameValid(String username) {
+       return users.stream().filter(u -> u.getUsername().equals(username))
+        .findFirst().orElse(null);
     }
 
 

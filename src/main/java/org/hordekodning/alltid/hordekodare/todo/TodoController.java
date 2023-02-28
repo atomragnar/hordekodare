@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 @Controller
 public class TodoController {
@@ -14,12 +15,13 @@ public class TodoController {
     @Autowired
     TodoServiceImpl todoService;
 
-    @GetMapping("/")
+    @GetMapping("/userpage")
     public String todoList(){
         return "userpage";
     }
 
-    @PostMapping("/")
+
+    @PostMapping("/userpage")
     public String postTodoList(@RequestParam String listItem, Model model){
         todoService.addToList(listItem);
         model.addAttribute("list", todoService.getList());

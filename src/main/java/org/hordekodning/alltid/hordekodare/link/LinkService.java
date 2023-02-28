@@ -1,4 +1,4 @@
-package org.hordekodning.alltid.hordekodare.link;
+/* package org.hordekodning.alltid.hordekodare.link;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.annotation.SessionScope;
@@ -24,3 +24,4 @@ public class LinkService {
         return linkList;
     }
 }
+ */

@@ -5,11 +5,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import jakarta.validation.Valid;
 
 @Controller
 public class AuthController {
@@ -41,13 +44,20 @@ public class AuthController {
     }
 
     @RequestMapping("/login")
-    public String linklogin() {
+    public String linkLogin() {
         return "login";
     }
 
     @PostMapping("/login") 
-    public String logincheck(@RequestParam String username, @RequestParam String password) {
-        return "userpage";
+    public String loginCheck(@RequestParam String username, @RequestParam String password) {
+        int check = userService.isLoginValid(username, password);
+        if (check == Constants.USERNAME_WRONG) {
+            return "login";
+        }
+        if (check == Constants.PASSWORD_WRONG) {
+            return "login";
+        }
+        return "redirect:/userpage";
     }
 
 
@@ -67,9 +77,19 @@ public class AuthController {
 
 
     @PostMapping("/register/save")
-    public String registration(@ModelAttribute("user") User user) {
+    public String registration(@Valid @ModelAttribute("user") User user, BindingResult result, Model model) {
+
+        if (userService.isEmailRegistered(user.getEmail())) {
+            result.rejectValue("email", Constants.EMAIL_REJECT_MESSAGE);
+        }
+        
+        if (result.hasErrors()) {
+            model.addAttribute("user", user);
+            return "register";
+        }
+
         userService.saveUser(user);
-        return "redirect:/register?success";
+        return "redirect:/register?success"; 
     }
 
 
