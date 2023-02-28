@@ -5,6 +5,7 @@
     <title>Links</title>
 </head>
 <body>
+
 <form action="/" method="post">
     <input type="text" name="name" placeholder="Link name"/>
     <input type="text" name="url" placeholder="Link URL"/>
@@ -15,5 +16,31 @@
         <a th:href="${link.getUrl}" th:text="${link.getName}"></a>
     </li>
 </ul>
+
+
+
+    <div>
+        <span th:text="${time.getNow}" ></span>
+        <br>
+        <span th:text="${time.getLd}" ></span>
+    </div>
+
+    <div>
+    <h1>Todo List</h1>
+<form action="/" method="post">
+    <input type="text" name="listItem">
+    <input type="submit">
+</form>
+<ul>
+    <li th:each="item, iter : ${list}">
+        <span th:text="${item}"></span>
+        <form th:action="@{'/checkbox/' + ${iter.index}}" method="post">
+            <input type="checkbox" name="isDone">
+            <input type="submit" value="delete">
+        </form>
+    </li>
+</ul>
+</div>
+
 </body>
 </html>
