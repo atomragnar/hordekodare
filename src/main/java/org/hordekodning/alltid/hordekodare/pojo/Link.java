@@ -1,4 +1,4 @@
-/* package org.hordekodning.alltid.hordekodare.link;
+package org.hordekodning.alltid.hordekodare.pojo;
 
 
 public class Link {
@@ -21,4 +21,3 @@ public class Link {
 }
 
 
- */

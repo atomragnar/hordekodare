@@ -23,10 +23,5 @@ public class LinkController {
         return "userpage";
     }
 
-    @PostMapping("/")
-    public String addLink(Model model, @RequestParam String name, @RequestParam String url) {
-        linkService.addList(name, url);
-        model.addAttribute("list", linkService.getLinkList());
-        return "userpage";
-    }
+    
 } */

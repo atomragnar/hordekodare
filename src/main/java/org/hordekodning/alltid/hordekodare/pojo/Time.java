@@ -1,3 +1,4 @@
+package org.hordekodning.alltid.hordekodare.pojo;
 /* package org.hordekodning.alltid.hordekodare.Time;
 
 import org.springframework.stereotype.Service;
