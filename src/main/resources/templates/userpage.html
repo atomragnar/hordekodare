@@ -2,9 +2,21 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Links</title>
 </head>
 <body>
+
+<form action="/" method="post">
+    <input type="text" name="name" placeholder="Link name"/>
+    <input type="text" name="url" placeholder="Link URL"/>
+    <input type="submit" value="Add link"/>
+</form>
+<ul>
+    <li th:each="link : ${list}">
+        <a th:href="${link.getUrl}" th:text="${link.getName}"></a>
+    </li>
+</ul>
+
 
 
     <div>
@@ -29,5 +41,6 @@
     </li>
 </ul>
 </div>
+
 </body>
 </html>
