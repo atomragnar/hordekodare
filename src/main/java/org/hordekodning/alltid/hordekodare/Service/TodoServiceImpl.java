@@ -1,5 +1,6 @@
-package org.hordekodning.alltid.hordekodare.todo;
+package org.hordekodning.alltid.hordekodare.Service;
 
+import org.hordekodning.alltid.hordekodare.pojo.Todo;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.annotation.SessionScope;
 

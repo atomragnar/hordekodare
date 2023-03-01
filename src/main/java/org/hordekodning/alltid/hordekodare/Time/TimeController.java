@@ -1,4 +1,4 @@
-package org.hordekodning.alltid.hordekodare.Time;
+/* package org.hordekodning.alltid.hordekodare.Time;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,4 +19,6 @@ Time time = new Time();
         return "userpage";
     }
 
+
 }
+ */

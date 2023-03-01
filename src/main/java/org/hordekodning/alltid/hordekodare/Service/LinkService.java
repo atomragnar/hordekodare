@@ -1,5 +1,6 @@
-package org.hordekodning.alltid.hordekodare.link;
+package org.hordekodning.alltid.hordekodare.Service;
 
+import org.hordekodning.alltid.hordekodare.pojo.Link;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.annotation.SessionScope;
 
@@ -22,5 +23,6 @@ public class LinkService {
 
     public List<Link> getLinkList() {
         return linkList;
+        
     }
 }

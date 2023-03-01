@@ -1,5 +1,0 @@
-Checklista för saker eventuella implementationer etc.
-
-* Skulle behöva en roll lista för eventuellt olika typer av behörigheter
-
-* 

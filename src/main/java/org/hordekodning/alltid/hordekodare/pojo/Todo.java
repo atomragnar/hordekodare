@@ -1,4 +1,4 @@
-package org.hordekodning.alltid.hordekodare.todo;
+package org.hordekodning.alltid.hordekodare.pojo;
 
 public class Todo {
     private String todoObject;
@@ -8,7 +8,6 @@ public class Todo {
     }
 
     public Todo(String todoObject){
-        isDone = false;
         this.todoObject = todoObject;
     }
 

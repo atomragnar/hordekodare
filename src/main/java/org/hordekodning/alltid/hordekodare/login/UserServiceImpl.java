@@ -20,11 +20,26 @@ public class UserServiceImpl implements UserService {
     }
 
     public User findUserByEmail(String email){ 
-        return new User();
+        return userRepository.findUserByEmail(email);
     }
 
     public List<User> getAllUsers(){
         return userRepository.getAllUsers();
+    }
+
+    public boolean isEmailRegistered(String email) {
+        return userRepository.findUserByEmail(email) != null ? true : false;
+    }
+
+    public int isLoginValid(String username, String password) {
+        User user = userRepository.isUsernameValid(username);
+        if (user == null) {
+            return Constants.USERNAME_WRONG;
+        }
+        if (!user.getPassword().equals(password)) {
+            return Constants.PASSWORD_WRONG;
+        }
+        return 0;
     }
     
 }

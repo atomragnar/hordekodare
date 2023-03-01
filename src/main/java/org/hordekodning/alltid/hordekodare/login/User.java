@@ -1,17 +1,26 @@
 package org.hordekodning.alltid.hordekodare.login;
 
-import jakarta.annotation.Generated;
+
 import java.util.UUID;
+
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 
 public class User {
 
 
     private String id;
-    private String name;
+    @NotBlank(message = "Username should not be empty")
+    private String username;
+    @NotBlank(message = "First name should not be empty")
+    private String firstName;
+    @NotBlank(message = "Last name should not be empty")
+    private String lastName;
+    @NotBlank(message = "Email should not be empty")
+    @Email
     private String email;
+    @NotBlank(message = "Password should not be empty")
     private String password;
-
-    // Can addera en lista för att definera hur man ska formatera det i SQL databas
 
     
     public User() {
@@ -23,14 +32,32 @@ public class User {
         return this.id;
     }
 
-
-    public String getName() {
-        return this.name;
+    public String getUsername() {
+        return this.username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
+
+
+
+    public String getFirstName() {
+        return this.firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return this.lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+    
 
     public String getEmail() {
         return this.email;

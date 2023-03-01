@@ -1,4 +1,4 @@
-package org.hordekodning.alltid.hordekodare.link;
+package org.hordekodning.alltid.hordekodare.pojo;
 
 
 public class Link {
@@ -17,6 +17,10 @@ public class Link {
 
     public String getUrl() {
         return url;
+    }
+    @Override
+    public String toString(){
+        return name;
     }
 }
 
