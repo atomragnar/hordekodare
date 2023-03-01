@@ -25,19 +25,8 @@ public class UserPageController {
     @Autowired
     LinkService linkService;
 
-    @GetMapping("/userpage")
-    public String todoList(){
-        return "userpage";
-    }
-
-    @GetMapping("/test")
+    @GetMapping("userpage")
     public String dateAndTime(Model model){
-        model.addAttribute("standardDate", new Date());
-        model.addAttribute("localDateTime", LocalDateTime.now());
-        model.addAttribute("localDate", LocalDate.now());
-        model.addAttribute("timestamp", Instant.now());
-
-
         return "userpage";
     }
 
@@ -76,6 +65,10 @@ public class UserPageController {
     public void update(Model model) {
         model.addAttribute("todos", todoService.getList());
         model.addAttribute("links", linkService.getLinkList());
+        model.addAttribute("standardDate", new Date());
+        model.addAttribute("localDateTime", LocalDateTime.now());
+        model.addAttribute("localDate", LocalDate.now());
+        model.addAttribute("timestamp", Instant.now());
     }
 
 
