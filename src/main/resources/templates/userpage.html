@@ -22,19 +22,23 @@
  <nav class="navbar navbar-dark bg-dark fixed-top">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">Home</a>
-      <form class="row g-3" method="post" th:action="@{/login}">
+      <form class="d-flex mt-3" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-success" type="submit">Search</button>
+      </form>
+      <!-- <form class="row g-3" method="post" th:action="@{/login}">
         <div class="col-auto">
           <label for="staticEmail2" class="visually-hidden">Email</label>
-          <input type="text" class="form-control-sm" id="username" value="username" name="username">
+          <input type="text" class="form-control-me-2" id="username" value="username" name="username">
         </div>
         <div class="col-auto">
           <label for="inputPassword2" class="visually-hidden">Password</label>
-          <input type="password" class="form-control-sm" id="inputPassword2" placeholder="Password" name="password">
+          <input type="password" class="form-control-me-2" id="inputPassword2" placeholder="Password" name="password">
         </div>
         <div class="col-auto">
-          <button type="submit" class="btn btn-outline-secondary btn-sm">Log in</button>
+          <button type="submit" class="btn btn-success btn-sm">Log in</button>
         </div>
-      </form>
+      </form> -->
       <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -62,14 +66,22 @@
                 <li>
                   <hr class="dropdown-divider">
                 </li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                <li><div class="row">
+                    <div class="col align-self-start">
+                      <form th:action="@{/updatelinks}" method="post">
+                          <input type="text" name="name" placeholder="Link name"/>
+                          <input type="text" name="url" placeholder="Link URL"/>
+                          <input type="submit" value="Add link"/>
+                      </form>
+                      <ul>
+                          <li th:each="Link : ${links}">
+                              <a class="dropdown-item" th:text="${Link}"></a>
+                          </li>
+                      </ul>
+                    </div></li>
               </ul>
             </li>
           </ul>
-          <form class="d-flex mt-3" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-success" type="submit">Search</button>
-          </form>
         </div>
       </div>
     </div>
@@ -80,7 +92,7 @@
   <br>
 
  <div class="container text-center">
-    <div class="row">
+    <!-- <div class="row">
       <div class="col align-self-start">
         <form th:action="@{/updatelinks}" method="post">
             <input type="text" name="name" placeholder="Link name"/>
@@ -92,7 +104,7 @@
                 <a th:text="${Link}"></a>
             </li>
         </ul>
-      </div>
+      </div> -->
       <div class="col align-self-center">
         <!-- <p th:text="${#date.currentDateTime}"></p> -->
       </div>

@@ -57,6 +57,7 @@ public class AuthController {
         if (check == Constants.PASSWORD_WRONG) {
             return "login";
         }
+
         return "redirect:/userpage";
     }
 
