@@ -11,6 +11,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
+
 @Controller
 public class UserPageController {
 
@@ -22,6 +27,17 @@ public class UserPageController {
 
     @GetMapping("/userpage")
     public String todoList(){
+        return "userpage";
+    }
+
+    @GetMapping("/test")
+    public String dateAndTime(Model model){
+        model.addAttribute("standardDate", new Date());
+        model.addAttribute("localDateTime", LocalDateTime.now());
+        model.addAttribute("localDate", LocalDate.now());
+        model.addAttribute("timestamp", Instant.now());
+
+
         return "userpage";
     }
 
