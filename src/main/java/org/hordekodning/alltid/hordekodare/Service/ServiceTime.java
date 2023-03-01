@@ -16,7 +16,7 @@ public class ServiceTime {
 
     //Night
     LocalTime time1 = LocalTime.parse("19:01:00.00");
-    LocalTime time2 = LocalTime.parse("06:00:00.00");
+    LocalTime time2 = LocalTime.parse("23:59:00.00");
     //Morning
     LocalTime time3 = LocalTime.parse("06:01:00.00");
     LocalTime time4 = LocalTime.parse("09:00:00.00");
