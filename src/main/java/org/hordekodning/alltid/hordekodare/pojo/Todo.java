@@ -8,7 +8,6 @@ public class Todo {
     }
 
     public Todo(String todoObject){
-        isDone = false;
         this.todoObject = todoObject;
     }
 

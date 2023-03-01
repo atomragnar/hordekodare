@@ -18,6 +18,10 @@ public class Link {
     public String getUrl() {
         return url;
     }
+    @Override
+    public String toString(){
+        return name;
+    }
 }
 
 
