@@ -28,24 +28,28 @@ public class UserPageController {
 
     @PostMapping("/userpage") 
     public String postTodoList(@RequestParam String listItem, Model model){
+       
         todoService.addToList(listItem);
-        model.addAttribute("todos", todoService.getList());
+        // model.addAttribute("todos", todoService.getList());
+        update(model);
         return "userpage";
     }
 
     @PostMapping("/updatelinks")
     public String addLink(Model model, @RequestParam String name, @RequestParam String url) {
-        updateTodos(model);
         linkService.addList(name, url);
-        model.addAttribute("links", linkService.getLinkList());
+        // model.addAttribute("links", linkService.getLinkList());
+        update(model);
         return "userpage";
     }
 
     @PostMapping("/checkbox/{index}")
     public String checkbox (@PathVariable int index, @RequestParam(required = false) boolean isDone, Model model){
-        updateLinks(model);
+       
         todoService.getList().get(index).setDone(isDone);
-        model.addAttribute("todos", todoService.getList());
+
+        update(model);
+        // model.addAttribute("todos", todoService.getList());
         if (todoService.getList().get(index).isDone()){
             todoService.removeFromList(index);
     
@@ -53,12 +57,10 @@ public class UserPageController {
         return "userpage";
     }
 
-    public void updateTodos(Model model) {
+    public void update(Model model) {
         model.addAttribute("todos", todoService.getList());
-    }
-
-    public void updateLinks(Model model) {
         model.addAttribute("links", linkService.getLinkList());
     }
+
 
 }
