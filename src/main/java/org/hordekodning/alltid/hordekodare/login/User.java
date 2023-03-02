@@ -12,10 +12,10 @@ public class User {
     private String id;
     @NotBlank(message = "Username should not be empty")
     private String username;
-    @NotBlank(message = "First name should not be empty")
+/*    @NotBlank(message = "First name should not be empty")
     private String firstName;
     @NotBlank(message = "Last name should not be empty")
-    private String lastName;
+    private String lastName;*/
     @NotBlank(message = "Email should not be empty")
     @Email
     private String email;
@@ -25,7 +25,6 @@ public class User {
     
     public User() {
         this.id = UUID.randomUUID().toString();
-    
     }
 
     public String getId() {
@@ -40,24 +39,6 @@ public class User {
         this.username = username;
     }
 
-
-
-    public String getFirstName() {
-        return this.firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return this.lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-    
 
     public String getEmail() {
         return this.email;

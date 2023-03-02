@@ -6,6 +6,8 @@ public class Constants {
 
     public static final int USERNAME_WRONG = -1;
     public static final int PASSWORD_WRONG = -2;
+
+    public static final int NOT_FOUND = -100;
     
     
 }

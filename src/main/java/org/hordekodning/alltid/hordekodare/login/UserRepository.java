@@ -7,12 +7,10 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.ArrayList;
 
-@Scope("singleton")
+//@Scope("singleton")
 @Repository
 public class UserRepository {
 
-    //  could make a backup list for users.
-    
     List<User> users = new ArrayList<>();
 
     public List<User> getAllUsers() {
