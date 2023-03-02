@@ -21,9 +21,10 @@ public interface UserService {
 
     public int isLoginValid(String username, String password);
 
- /*    @Bean
-    public static PasswordEncoder passwordEncoder(){
-        return new BCryptPasswordEncoder();
-    } */
+    public int getUserIndex(String id);
+
+    public User getUserById(String id);
+
+    public User getUser(int index);
 
 }

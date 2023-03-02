@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Do+Hyeon&family=Kristi&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Do+Hyeon&family=Kristi&family=Tilt+Prism&display=swap" rel="stylesheet">
 
     ${#temporals.day(date)}
     ${#temporals.month(date)}
@@ -30,8 +30,11 @@
 
 
 
+
+
 <style th:if="${time.isNight == true}">
 body {
+
   background-image: url('filip-mroz-023T4jyCRqA-unsplash.jpg');
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -41,15 +44,17 @@ body {
 
 <style th:if="${time.isMorning == true}">
 body {
-  background-image: url('photo-1414609245224-afa02bfb3fda.avif');
+  background-image: url('rachel-cook-mOcdke2ZQoE-unsplash.jpg');
   background-repeat: no-repeat;
   background-attachment: fixed;
-   background-size: 100% 100%;
+  background-size: 100% 100%;
 }
 </style>
 
+
 <style class="background" th:if="${time.isDay == true}">
 body {
+
   background-image: url('nathan-dumlao-71u2fOofI-U-unsplash.jpg');
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -100,7 +105,7 @@ body {
                 </li>
                 <li>
                     <div class="row">
-                    <div class="col align-self-start">
+                    <!--<div class="col align-self-start">
                       <form th:action="@{/updatelinks}" method="post">
                           <input class="form-control me-2" type="text" name="name" placeholder="Link name"/>
                           <input class="form-control me-2" type="text" name="url" placeholder="Link URL"/>
@@ -111,7 +116,7 @@ body {
                               <a th:href="${Link.url}" class="dropdown-item" th:text="${Link}"></a>
                           </li>
                       </ul>
-                    </div>
+                    </div>-->
                 </div></li>
               </ul>
             </li>
@@ -125,18 +130,16 @@ body {
   <br>
   <br>
 
-
-
-     <div class="todoDiv container" style="margin-left: 5px;">
-          <div class="row">
-              <div class=" todo col-md-3 border border-dark-subtle bg-dark">
-        <h3 class="text-white">Todo List</h3>
-        <form  class="d-flex mt-3" th:action="@{/userpage}" method="post">
-            <input class="form-control me-2" type="text" name="listItem">
+<div  class="container-fluid text-center">
+    <div class="row">
+              <div class="list col justify-self-start border-dark-subtle bg-dark" style="--bs-bg-opacity: .5;">
+        <h3 class="text-white">To-do´s</h3>
+        <form id="hej" class="d-flex mt-3" th:action="@{/userpage}" method="post">
+            <input class="form-control me-2" placeholder="to do.." type="text" name="listItem">
             <button class="btn btn-success " type="submit">Add</button>
         </form>
         <ul class="list-group bg-dark">
-            <li class="text-white list-group-item bg-dark " th:each="item, iter : ${todos}">
+            <li class="text-white list-group-item bg-dark" style="--bs-bg-opacity: .3;" th:each="item, iter : ${todos}">
 
                 <form th:action="@{'/checkbox/' + ${iter.index}}" method="post">
                     <input class="form-check-input me-1" type="checkbox" name="isDone">
@@ -146,15 +149,7 @@ body {
             </li>
         </ul>
               </div>
-          </div>
-      </div>
-
-
-     <div class="container text-center">
-
-
-
-         <div class="col align-self-center">
+         <div class="col justify-self-center">
 
              <div class="time">
                  <span th:text="${#temporals.dayOfWeekName(localDateTime)}"></span>
@@ -163,22 +158,41 @@ body {
                  :
                  <span th:text="${#temporals.minute(localDateTime)}"></span>
              </div>
-
-             <br>
-             <br>
-
              <form action="https://www.google.com/search" method="get" class="d-flex mt-3 searchbar" role="search">
-                 <input type="text" name="q" placeholder="eeh..?" required>
+                 <input class="searchinput" type="text" name="q" placeholder="eeh..?" required>
                  <i type="submit" class="fa fa-search"></i>
-                 <i type="submit" class="fa fa-search"></i>
-
              </form>
          </div>
+
+        <div class="list col justify-self-end  border-dark-subtle bg-dark " style="--bs-bg-opacity: .5;">
+            <h3 class="text-white">Links</h3>
+            <form th:action="@{/updatelinks}" method="post">
+                <input class="form-control me-2" type="text" name="name" placeholder="Link name"/>
+                <input class="form-control me-2" type="text" name="url" placeholder="Link URL"/>
+                <button class="btn btn-success" type="submit">Add Link</button>
+            </form>
+            <ul class="list-group">
+                <li class="text-white list-group-item bg-dark" style="--bs-bg-opacity: .3;" th:each="Link : ${links}">
+                    <a th:href="${Link.url}" class="dropdown-item" th:text="${Link}"></a>
+                </li>
+            </ul>
+        </div>
+    </div>
      </div>
+<br>
+<br>
+
 
 
          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
         crossorigin="anonymous"></script>
 </body>
+
+<footer>
+    <div class="weather">
+        <iframe src="https://www.meteoblue.com/en/weather/widget/three?geoloc=detect&nocurrent=0&noforecast=0&days=4&tempunit=CELSIUS&windunit=KILOMETER_PER_HOUR&layout=image"  frameborder="0" scrolling="NO" allowtransparency="true" sandbox="allow-same-origin allow-scripts allow-popups allow-popups-to-escape-sandbox">
+        </iframe><div><!-- DO NOT REMOVE THIS LINK --><a href="https://www.meteoblue.com/en/weather/week/index?utm_source=weather_widget&utm_medium=linkus&utm_content=three&utm_campaign=Weather%2BWidget" target="_blank" rel="noopener">meteoblue</a></div>
+    </div>
+</footer>
 </html>

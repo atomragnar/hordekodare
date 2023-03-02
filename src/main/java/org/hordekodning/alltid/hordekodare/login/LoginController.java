@@ -2,7 +2,9 @@ package org.hordekodning.alltid.hordekodare.login;
 
 import java.util.List;
 
+import org.hordekodning.alltid.hordekodare.config.SecurityConfig;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,14 +17,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import jakarta.validation.Valid;
 
 @Controller
-public class AuthController {
+public class LoginController {
 
     @Autowired
     UserService userService;
 
-    // GetMapping for index
+    @Autowired
+    BCryptPasswordEncoder passwordEncoder;
 
-    @GetMapping("/")
+  /*  @GetMapping("/")
     public String home() {
         return "index";
     }
@@ -35,34 +38,32 @@ public class AuthController {
     @RequestMapping("/")
     public String linkhome() {
         return "index";
-    }
+    }*/
 
 
-    @GetMapping("/login")
+    @GetMapping("/loginOld")
     public String loginForm() {
-        return "login";
+        return "loginOld";
     }
 
-    @RequestMapping("/login")
+    @RequestMapping("/loginOld")
     public String linkLogin() {
-        return "login";
+        return "loginOld";
     }
 
-    @PostMapping("/login") 
+    @PostMapping("/loginOld")
     public String loginCheck(@RequestParam String username, @RequestParam String password) {
         int check = userService.isLoginValid(username, password);
         if (check == Constants.USERNAME_WRONG) {
-            return "login";
+            return "loginOld";
         }
         if (check == Constants.PASSWORD_WRONG) {
-            return "login";
+            return "loginOld";
         }
 
         return "redirect:/userpage";
     }
 
-
-    // registration form.
 
     @RequestMapping("/register") 
     public String linkRegister() {
@@ -79,6 +80,7 @@ public class AuthController {
 
     @PostMapping("/register/save")
     public String registration(@Valid @ModelAttribute("user") User user, BindingResult result, Model model) {
+        encodeUserPW(user);
 
         if (userService.isEmailRegistered(user.getEmail())) {
             result.rejectValue("email", Constants.EMAIL_REJECT_MESSAGE);
@@ -94,15 +96,52 @@ public class AuthController {
     }
 
 
-    @GetMapping("/users")
+    @GetMapping("/usersOld")
     public String users(Model model) {
+        List<User> users = userService.getAllUsers();
+        model.addAttribute("users", users);
+        return "usersOld";
+    }
+
+    
+
+    @GetMapping("/users")
+    public String getUsers(Model model) {
         List<User> users = userService.getAllUsers();
         model.addAttribute("users", users);
         return "users";
     }
 
-    
 
+    @PostMapping("/handleAddUser")
+    public String handleAddUser(@Valid @ModelAttribute("user") User user, BindingResult result, Model model) {
+        encodeUserPW(user);
+
+        if (userService.isEmailRegistered(user.getEmail())) {
+            result.rejectValue("email", Constants.EMAIL_REJECT_MESSAGE);
+            return "/add_user";
+        }
+
+        if (result.hasErrors()) {
+            model.addAttribute("user", user);
+            return "/add_user";
+        }
+
+        userService.saveUser(user);
+        return "redirect:/users?success";
+    }
+
+
+    @GetMapping("/add_user")
+    public String addUser(Model model, @RequestParam(required = false, defaultValue =  "missing") String id) {
+        model.addAttribute("user", userService.getUserById(id));
+        return "add_user";
+    }
+
+
+    public void encodeUserPW(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+    }
 
 
     

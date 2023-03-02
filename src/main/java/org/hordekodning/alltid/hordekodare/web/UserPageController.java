@@ -26,22 +26,19 @@ public class UserPageController {
     @Autowired
     LinkService linkService;
 
+    @Autowired
+    ServiceTime time;
 
 
     @GetMapping("/userpage")
     public String dateAndTime(Model model){
-        ServiceTime time = new ServiceTime();
-
-       model.addAttribute("time", time);
         update(model);
-
         return "userpage";
     }
 
 
     @PostMapping("/userpage") 
     public String postTodoList(@RequestParam String listItem, Model model){
-       
         todoService.addToList(listItem);
         // model.addAttribute("todos", todoService.getList());
         update(model);
@@ -77,6 +74,7 @@ public class UserPageController {
         model.addAttribute("localDateTime", LocalDateTime.now());
         model.addAttribute("localDate", LocalDate.now());
         model.addAttribute("timestamp", Instant.now());
+        model.addAttribute("time", time);
     }
 
 

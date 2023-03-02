@@ -1,47 +1,39 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Users</title>
-    <link th:href="@{https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/users-stylesheet.css}" rel="stylesheet">
 </head>
-
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
-        <a class="navbar-brand" th:href="@{/index}">Home</a>
+<div class="topnav">
+    <a th:href="@{/users}">Users</a>
+    <a th:href="@{/users/add_user}">Add user</a>
+</div>
 
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page" th:href="@{/logout}">Logout</a>
-            </li>
-        </ul>
+<div class= "container">
+    <h2 > Users </h2>
 
-    </nav>
-    <div class="container">
-        <div class="row col-md-10">
-            <h2>Lista på användare</h2>
-        </div>
-        <table class="table table-bordered table-hover">
-            <thead class="table-dark">
-                <tr>
-                    <th>Namn</th>
-                    <th>Email</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="user : ${users}">
-                    <td th:text="${user.username}"></td>
-                    <td th:text="${user.firstName}"></td>
-                    <td th:text="${user.lastName}"></td>
-                    <td th:text="${user.email}"></td>
-                    <td th:text="${user.id}"></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+  <!--   <div th:if="${param.success}">
+        <div class="alert alert-info">New user registered!</div>
+    </div> -->
+
+    <table id="table">
+        <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Password</th>
+            <th>Id</th>
+        </tr>
+        <tr th:each="user: ${users}">
+            <td th:text="${user.username}"></td>
+            <td th:text="${user.email}"></td>
+            <td th:text="${user.password}"></td>
+            <td th:text="${user.id}"></td>
+            <td> <a role="button" class="update" th:href="@{users/(id = ${user.id})}">Update</a> </td>
+        </tr>
+    </table>
+</div>
+
 </body>
-
 </html>
