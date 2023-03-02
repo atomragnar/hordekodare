@@ -1,3 +1,4 @@
+
 package org.hordekodning.alltid.hordekodare.Service;
 
 import org.springframework.stereotype.Service;
@@ -17,8 +18,10 @@ public class ServiceTime {
     //Night
     LocalTime time1 = LocalTime.parse("19:01:00.00");
     LocalTime time2 = LocalTime.parse("23:59:00.00");
+
     LocalTime time9 = LocalTime.parse("00:00:00.00");
     LocalTime time10 = LocalTime.parse("06:00:00.00");
+
     //Morning
     LocalTime time3 = LocalTime.parse("06:01:00.00");
     LocalTime time4 = LocalTime.parse("09:00:00.00");
@@ -44,7 +47,8 @@ public class ServiceTime {
 
     public boolean isNight() {
         Boolean night;
-        if (now.isAfter(time1) && now.isBefore(time2) && now.isAfter(time9) && now.isBefore(time10)) {
+        if (now.isAfter(time1) && now.isBefore(time2)&& now.isAfter(time9) && now.isBefore(time10)
+) {
             return night = true;
         }
     return false;
@@ -71,7 +75,7 @@ public class ServiceTime {
 
     public boolean isAfternoon() {
         Boolean afternoon;
-        if (now.isAfter(time7)) {
+        if (now.isAfter(time7) && now.isBefore(time8)) {
             return afternoon = true;
         }
         return false;
