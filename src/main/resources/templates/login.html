@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <link th:href="@{/css/login-style.css}" rel="stylesheet">
+  <link th:href="@{/css/loginstyle.css}" rel="stylesheet">
   <title>Login</title>
 </head>
 <body>
@@ -11,7 +11,7 @@
     <div class="screen__content">
 
 
-      <form class="login" th:action="@{/sign-in}" method="post">
+      <form class="login"  method="post" th:action="@{/sign-in}">
         <div class="login__field">
           <i class="login__icon fas fa-user"></i>
           <input type="text" class="login__input" name="username" placeholder="User name / Email">

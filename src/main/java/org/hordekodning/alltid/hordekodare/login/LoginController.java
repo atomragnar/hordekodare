@@ -119,12 +119,12 @@ public class LoginController {
 
         if (userService.isEmailRegistered(user.getEmail())) {
             result.rejectValue("email", Constants.EMAIL_REJECT_MESSAGE);
-            return "/add_user";
+            return "add_user";
         }
 
         if (result.hasErrors()) {
             model.addAttribute("user", user);
-            return "/add_user";
+            return "add_user";
         }
 
         userService.saveUser(user);
@@ -133,10 +133,17 @@ public class LoginController {
 
 
     @GetMapping("/add_user")
-    public String addUser(Model model, @RequestParam(required = false, defaultValue =  "missing") String id) {
+    public String addUser(Model model, @RequestParam(required = false) String id) {
         model.addAttribute("user", userService.getUserById(id));
         return "add_user";
     }
+
+    @GetMapping("/add_user/")
+    public String addUser2(Model model, @RequestParam(required = false) String id) {
+        model.addAttribute("user", userService.getUserById(id));
+        return "add_user";
+    }
+
 
 
     public void encodeUserPW(User user) {

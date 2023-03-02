@@ -2,21 +2,21 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <link th:href="@{/users-stylesheet.css}" rel="stylesheet">
+    <link th:href="@{/css/usersstylesheet.css}" rel="stylesheet">
 </head>
 <body>
 
 <div class="topnav">
     <a th:href="@{/users}">Users</a>
-    <a th:href="@{/users/add_user}">Add user</a>
+    <a th:href="@{/add_user}">Add user</a>
 </div>
 
 <div class= "container">
     <h2 > Users </h2>
 
-  <!--   <div th:if="${param.success}">
+     <div th:if="${param.success}">
         <div class="alert alert-info">New user registered!</div>
-    </div> -->
+    </div>
 
     <table id="table">
         <tr>
@@ -30,7 +30,7 @@
             <td th:text="${user.email}"></td>
             <td th:text="${user.password}"></td>
             <td th:text="${user.id}"></td>
-            <td> <a role="button" class="update" th:href="@{users/(id = ${user.id})}">Update</a> </td>
+            <td> <a role="button" class="update" th:href="@{/add_user/(id=${user.id})}">Update</a> </td>
         </tr>
     </table>
 </div>

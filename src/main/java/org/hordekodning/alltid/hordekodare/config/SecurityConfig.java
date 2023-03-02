@@ -8,6 +8,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -25,12 +26,12 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests()
-                .requestMatchers("/users/**").hasRole(Role.ADMIN.name())
+                .requestMatchers("/**").hasRole(Role.ADMIN.name())
                 .requestMatchers("/userpage/**").hasRole(Role.USER.name())
                 .anyRequest()
                 .authenticated()
                 .and()
-                .formLogin()
+                .formLogin().permitAll()
                 .loginPage("/login")
                 .loginProcessingUrl("/sign-in")
                 .defaultSuccessUrl("/userpage", true)
@@ -73,6 +74,12 @@ public class SecurityConfig {
 
         return new InMemoryUserDetailsManager(admin, user);
 
+    }
+
+    @Bean
+    public WebSecurityCustomizer webSecurityCustomizer() {
+        return web -> web.ignoring()
+                .requestMatchers("/css/**", "/js/**");
     }
 
 
