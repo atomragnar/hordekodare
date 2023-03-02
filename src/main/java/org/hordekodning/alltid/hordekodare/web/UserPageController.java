@@ -2,6 +2,7 @@
 package org.hordekodning.alltid.hordekodare.web;
 
 import org.hordekodning.alltid.hordekodare.Service.LinkService;
+import org.hordekodning.alltid.hordekodare.Service.ServiceTime;
 import org.hordekodning.alltid.hordekodare.Service.TodoServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,8 +26,15 @@ public class UserPageController {
     @Autowired
     LinkService linkService;
 
-    @GetMapping("userpage")
+
+
+    @GetMapping("/userpage")
     public String dateAndTime(Model model){
+        ServiceTime time = new ServiceTime();
+
+       model.addAttribute("time", time);
+        update(model);
+
         return "userpage";
     }
 
