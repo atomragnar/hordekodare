@@ -23,6 +23,9 @@ public class LinkService {
 
     public List<Link> getLinkList() {
         return linkList;
-        
     }
+
+    public void saveLink(Link link) {
+    }
+
 }
