@@ -75,7 +75,7 @@ public class ServiceTime {
 
     public boolean isAfternoon() {
         Boolean afternoon;
-        if (now.isAfter(time7)) {
+        if (now.isAfter(time7) && now.isBefore(time8)) {
             return afternoon = true;
         }
         return false;

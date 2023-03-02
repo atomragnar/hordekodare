@@ -1,11 +1,18 @@
 
 
 .time{
-
- font-family: 'Kristi', cursive;
+ font-family: 'Tilt Prism', cursive;
  font-size: 60px;
  color: yellow;
+}
 
+
+.text-white{
+ font-family: 'Tilt Prism', cursive;
+}
+
+#hej1{
+width: 30px;
 }
 
 body {
@@ -99,5 +106,11 @@ form:valid a {
 .list{
 width: 100px;
 }
+
+.weather{
+width: 100px;
+height: 100px;
+}
+
 
 
