@@ -9,67 +9,6 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-dark bg-dark fixed-top">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">Home</a>
-          <form class="row g-3" method="post" th:action="@{/login}">
-            <div class="col-auto">
-              <label for="staticEmail2" class="visually-hidden">Email</label>
-              <input type="text" class="form-control-sm" id="username" value="username" name="username">
-            </div>
-            <div class="col-auto">
-              <label for="inputPassword2" class="visually-hidden">Password</label>
-              <input type="password" class="form-control-sm" id="inputPassword2" placeholder="Password" name="password">
-            </div>
-            <div class="col-auto">
-              <button type="submit" class="btn btn-outline-secondary btn-sm">Log in</button>
-            </div>
-          </form>
-          <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
-            <div class="offcanvas-header">
-              <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Någon titel</h5>
-              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body">
-              <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" th:href="@{/register}">Register</a>
-                  <a class="nav-link" th:href="@{/login}">Log in</a>
-                </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Dropdown
-                  </a>
-                  <ul class="dropdown-menu dropdown-menu-dark">
-                    <li><a class="dropdown-item" href="#">Action</a></li>
-                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                    <li>
-                      <hr class="dropdown-divider">
-                    </li>
-                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                  </ul>
-                </li>
-              </ul>
-              <form class="d-flex mt-3" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-success" type="submit">Search</button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </nav> 
-
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
 
     <div class="container">
         <div class="row col-md-8 offset-md-2">
@@ -78,10 +17,10 @@
                 <div class="card-header">
                     <h2 class="text-center" th:unless="${param.success}">Register</h2>
                     <div th:if="${param.success}">
-                        <div class="alert alert-info">Du är nu registrerad!</div>
-                        <div th:if="${param.success}">
-                            <a href="/" th:href="@{/login}">Login here</a>
-                        </div>
+                        <div class="alert alert-info">You are now registered!</div>
+                        <!--<div th:if="${param.success}">
+                            <a href="/" th:href="@{/loginOld}">Login here</a>
+                        </div>-->
                     </div>
                 </div>
                 <div class="card-body">
@@ -91,26 +30,10 @@
 
                         <div class="form-group mb-3">
                             <label class="form-label">Username</label>
-                            <input class="form-control" id="name" name="name" placeholder="Enter username"
+                            <input class="form-control" id="name" placeholder="Enter username"
                                 th:field="*{username}" type="text" />
                             <p th:errors = "*{username}" class="text-danger" th:if="${#fields.hasErrors('username')}"></p>
                         </div>
-
-                        <div class="form-group mb-3">
-                            <label class="form-label">First Name</label>
-                            <input class="form-control" id="name" name="name" placeholder="Enter first name"
-                                th:field="*{firstName}" type="text" />
-                            <p th:errors = "*{firstName}" class="text-danger" th:if="${#fields.hasErrors('firstName')}"></p>
-                        </div>
-                        
-
-                        <div class="form-group mb-3">
-                            <label class="form-label">Last Name</label>
-                            <input class="form-control" id="name" name="name" placeholder="Enter last name"
-                                th:field="*{lastName}" type="text" />
-                            <p th:errors = "*{lastName}" class="text-danger" th:if="${#fields.hasErrors('lastName')}"></p>
-                        </div>
-                        
 
                         <div class="form-group mb-3">
                             <label class="form-label">Email</label>
@@ -122,7 +45,7 @@
 
                         <div class="form-group mb-3">
                             <label class="form-label">Password</label>
-                            <input class="form-control" id="password" name="password" placeholder="Enter password"
+                            <input class="form-control" placeholder="Enter password"
                                 th:field="*{password}" type="password" />
                             <p th:errors = "*{password}" class="text-danger" th:if="${#fields.hasErrors('password')}"></p>
                         </div>
@@ -130,10 +53,32 @@
 
                         <div class="form-group modal-mb-3">
                             <button class="btn btn-dark" type="submit">Register</button>
-                            <span>Already registered? <a href="/" th:href="@{/login}">Login
+                            <span>Already registered? <a href="/" th:href="@{/loginOld}">Login
                                     here</a></span>
                         </div>
                     </form>
+
+                    <div class="container">
+
+                        <form method="post" th:action="@{/sign-in}" class="form-horizontal" role="form" th:if="${param.success}">
+                            <div class="mb-3">
+                                <label for="username" class="control-label">Email *</label>
+                                <input type="text" id="username" name="username" class="form-control" placeholder="Email" />
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="password" class="control-label">Password *</label>
+                                <input type="password" id="password" name="password" class="form-control" placeholder="Password" />
+                            </div>
+
+                            <div class="mb-3">
+                                <button type="submit" class="btn btn-primary">Log in</button>
+                            </div>
+                        </form>
+                      <!--  <button method="get" type="submit" class="btn btn-primary" th:action="@{/register}">Registera</button>-->
+                    </div>
+
+
                 </div>
 
             </div>

@@ -15,20 +15,36 @@ public class UserServiceImpl implements UserService {
         return new User();
     }
 
+    @Override
     public void saveUser(User user) {
-        userRepository.addUser(user);
+        int index = getUserIndex(user.getId());
+        if (index == Constants.NOT_FOUND) {
+            userRepository.addUser(user);
+        } else {
+            userRepository.updateUser(index, user);
+        }
+
+
     }
 
+    @Override
+    public User getUser(int index) {
+        return userRepository.getUser(index);
+    }
+
+    @Override
     public User findUserByEmail(String email){ 
         return userRepository.findUserByEmail(email);
     }
 
+    @Override
     public List<User> getAllUsers(){
         return userRepository.getAllUsers();
     }
 
+    @Override
     public boolean isEmailRegistered(String email) {
-        return userRepository.findUserByEmail(email) != null ? true : false;
+        return userRepository.findUserByEmail(email) != null;
     }
 
     public int isLoginValid(String username, String password) {
@@ -39,7 +55,24 @@ public class UserServiceImpl implements UserService {
         if (!user.getPassword().equals(password)) {
             return Constants.PASSWORD_WRONG;
         }
-        return 0;
+        return Constants.NOT_FOUND;
     }
-    
+
+    @Override
+    public int getUserIndex(String id) {
+        for (int i = 0; i < getAllUsers().size(); i++) {
+            if (userRepository.getUser(i).getId().equals(id)) return i;
+        }
+        return Constants.NOT_FOUND;
+    }
+
+    @Override
+    public User getUserById(String id) {
+        int index = getUserIndex(id);
+        return index == Constants.NOT_FOUND ? new User() : getUser(index);
+
+    }
+
+
+
 }
